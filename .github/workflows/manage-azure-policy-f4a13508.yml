@@ -1,0 +1,68 @@
+name: manage-azure-policy-f4a13508
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/_Preview_Storage_account_public_access_should_be_disallowed_4fa4b6c0-31ca-4c0d-b10d-24b96f62a751/**'
+#      - 'policies/Storage_accounts_should_have_infrastructure_encryption_4733ea7b-a883-42fe-8cac-97454c2a9e4a/**'
+#      - 'policies/Storage_account_keys_should_not_be_expired_044985bb-afe1-42cd-8a36-9d5d42424537/**'
+#      - 'policies/Configure_Azure_File_Sync_to_use_private_DNS_zones_06695360-db88-47f6-b976-7500d4297475/**'
+#      - 'policies/Modify_-_Configure_Azure_File_Sync_to_disable_public_network_access_0e07b2e9-6cd9-4c40-9ccb-52817b95133b/**'
+#      - 'policies/Azure_File_Sync_should_use_private_link_1d320205-c6a1-4ac6-873d-46224024e8e2/**'
+#      - 'policies/Public_network_access_should_be_disabled_for_Azure_File_Sync_21a8cd35-125e-4d13-b82d-2e19b7208bb7/**'
+#      - 'policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**'
+#      - 'policies/Storage_accounts_should_restrict_network_access_34c877ad-507e-4c82-993e-3452a6e0ad3c/**'
+#      - 'policies/Deploy_Advanced_Threat_Protection_on_storage_accounts_361c2074-3595-4e5d-8cab-4f21dffc835c/**'
+#      - 'policies/Storage_accounts_should_be_migrated_to_new_Azure_Resource_Manager_resources_37e0d2fe-28a5-43d6-a273-67d37d1f5606/**'
+#      - 'policies/Storage_accounts_should_use_private_link_6edd7eda-6dd8-40f7-810d-67160c639cd9/**'
+#      - 'policies/Configure_diagnostic_settings_for_storage_accounts_to_Log_Analytics_workspace_6f8f98a4-f108-47cb-8e98-91a0d85cd474/**'
+#      - 'policies/Storage_accounts_should_use_customer-managed_key_for_encryption_6fac406b-40ca-413b-bf8e-0bf964659c25/**'
+#      - 'policies/HPC_Cache_accounts_should_use_customer-managed_key_for_encryption_970f84d8-71b6-4091-9979-ace7e3fb6dbb/**'
+#      - 'policies/Configure_Storage_account_to_use_a_private_link_connection_9f766f00-8d11-464e-80e1-4091d7874074/**'
+#      - 'policies/Storage_account_encryption_scopes_should_use_customer-managed_keys_to_encrypt_data_at_rest_b5ec538c-daa0-4006-8596-35468b9148e8/**'
+#      - 'policies/Geo-redundant_storage_should_be_enabled_for_Storage_Accounts_bf045164-79ba-4215-8f95-f8048dc1780b/**'
+#      - 'policies/Storage_accounts_should_allow_access_from_trusted_Microsoft_services_c9d007d0-c057-4772-b18c-01e546713bcd/**'
+#      - .github/workflows/manage-azure-policy-f4a13508.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_f4a13508}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/_Preview_Storage_account_public_access_should_be_disallowed_4fa4b6c0-31ca-4c0d-b10d-24b96f62a751/**
+          policies/Storage_accounts_should_have_infrastructure_encryption_4733ea7b-a883-42fe-8cac-97454c2a9e4a/**
+          policies/Storage_account_keys_should_not_be_expired_044985bb-afe1-42cd-8a36-9d5d42424537/**
+          policies/Configure_Azure_File_Sync_to_use_private_DNS_zones_06695360-db88-47f6-b976-7500d4297475/**
+          policies/Modify_-_Configure_Azure_File_Sync_to_disable_public_network_access_0e07b2e9-6cd9-4c40-9ccb-52817b95133b/**
+          policies/Azure_File_Sync_should_use_private_link_1d320205-c6a1-4ac6-873d-46224024e8e2/**
+          policies/Public_network_access_should_be_disabled_for_Azure_File_Sync_21a8cd35-125e-4d13-b82d-2e19b7208bb7/**
+          policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**
+          policies/Storage_accounts_should_restrict_network_access_34c877ad-507e-4c82-993e-3452a6e0ad3c/**
+          policies/Deploy_Advanced_Threat_Protection_on_storage_accounts_361c2074-3595-4e5d-8cab-4f21dffc835c/**
+          policies/Storage_accounts_should_be_migrated_to_new_Azure_Resource_Manager_resources_37e0d2fe-28a5-43d6-a273-67d37d1f5606/**
+          policies/Storage_accounts_should_use_private_link_6edd7eda-6dd8-40f7-810d-67160c639cd9/**
+          policies/Configure_diagnostic_settings_for_storage_accounts_to_Log_Analytics_workspace_6f8f98a4-f108-47cb-8e98-91a0d85cd474/**
+          policies/Storage_accounts_should_use_customer-managed_key_for_encryption_6fac406b-40ca-413b-bf8e-0bf964659c25/**
+          policies/HPC_Cache_accounts_should_use_customer-managed_key_for_encryption_970f84d8-71b6-4091-9979-ace7e3fb6dbb/**
+          policies/Configure_Storage_account_to_use_a_private_link_connection_9f766f00-8d11-464e-80e1-4091d7874074/**
+          policies/Storage_account_encryption_scopes_should_use_customer-managed_keys_to_encrypt_data_at_rest_b5ec538c-daa0-4006-8596-35468b9148e8/**
+          policies/Geo-redundant_storage_should_be_enabled_for_Storage_Accounts_bf045164-79ba-4215-8f95-f8048dc1780b/**
+          policies/Storage_accounts_should_allow_access_from_trusted_Microsoft_services_c9d007d0-c057-4772-b18c-01e546713bcd/**
